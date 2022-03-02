@@ -1,6 +1,7 @@
 import type { TemplateResult } from "lit";
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { when } from "lit/directives/when.js";
 import { TW } from "../util/TailwindMixin";
 
 @customElement("x-focus-area")
@@ -37,15 +38,25 @@ export class FocusArea extends TW(LitElement) {
   }
 
   render = (): TemplateResult => html`
-    <div>
+    <div
+      class="${this.focused
+        ? "bg-black/20"
+        : "bg-black/0"} pointer-events-none fixed inset-0 z-10 transition-all duration-75"
+    ></div>
+    <div class="${this.focused ? "z-10" : "z-0"} relative">
       <slot></slot>
-      <p class="flex items-center">
-        <x-icon icon="info"></x-icon>
-        <span>
-          Capturing input, click anywhere outside of this area or press
-          <kbd>Ctrl+C</kbd> to stop.
-        </span>
-      </p>
+      ${when(
+        this.focused,
+        () => html`
+          <p class="my-4 flex items-center rounded bg-white py-2 px-3">
+            <x-icon icon="info"></x-icon>
+            <span>
+              Capturing input, click anywhere outside of this area or press
+              <kbd>Ctrl+C</kbd> to stop.
+            </span>
+          </p>
+        `
+      )}
     </div>
   `;
 }
