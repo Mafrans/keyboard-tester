@@ -2,7 +2,6 @@
 import type { TemplateResult } from "lit";
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-
 import "../components/HelloWorld";
 import "../styles/main.css";
 import { TW } from "../util/TailwindMixin";
@@ -11,9 +10,9 @@ import { TW } from "../util/TailwindMixin";
 export class IndexPage extends TW(LitElement) {
   render(): TemplateResult {
     return html`
-      <div class="container">
+      <x-primary-layout>
         <x-hello-world></x-hello-world>
-      </div>
+      </x-primary-layout>
     `;
   }
 }
