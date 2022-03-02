@@ -1,6 +1,7 @@
 {
   "extends": "galex",
   "rules": {
-    "@typescript-eslint/explicit-member-accessibility": "off"
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "import/order": "off"
   }
 }
