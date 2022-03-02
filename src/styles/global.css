@@ -1,0 +1,6 @@
+@layer base {
+  kbd {
+    @apply inline-block py-1 px-2 rounded-sm
+    @apply bg-violet-300 text-white text-sm font-bold;
+  }
+}
