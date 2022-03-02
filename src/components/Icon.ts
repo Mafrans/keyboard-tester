@@ -1,3 +1,4 @@
+import type { TemplateResult } from "lit";
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { TW } from "../util/TailwindMixin";
@@ -11,16 +12,17 @@ import { TW } from "../util/TailwindMixin";
 @customElement("x-icon")
 export class Icon extends TW(LitElement) {
   @property({ type: String })
-  icon = "shape-circle";
+  icon: GgIcon = "shape-circle";
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = `https://css.gg/${this.icon}.css`;
-    this.shadowRoot.appendChild(link);
+    this.shadowRoot.append(link);
   }
 
-  render = () => html` <i class="gg-${this.icon} inline-block"></i> `;
+  render = (): TemplateResult =>
+    html` <i class="gg-${this.icon} inline-block"></i> `;
 }
